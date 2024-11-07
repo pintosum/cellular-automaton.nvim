@@ -25,7 +25,7 @@ local function process_frame(grid, animation_config, win_id)
   end
 end
 
-local function setup_cleaning(win_id, buffers)
+local function setup_cleaning(win_id, buffers, config)
   local exit_keys = { "q", "Q", "<ESC>", "<CR>" }
   for _, key in ipairs(exit_keys) do
     for _, buffer_id in ipairs(buffers) do
@@ -51,6 +51,7 @@ local function _execute_animation(animation_config)
   if animation_in_progress then
     error("Nested animations are forbidden")
   end
+  M.anim = animation_config
   animation_in_progress = true
   local host_win_id = vim.api.nvim_get_current_win()
   local host_bufnr = vim.api.nvim_get_current_buf()
@@ -73,6 +74,7 @@ end
 
 M.clean = function()
   animation_in_progress = false
+  if(M.anim.com ~= nil) then vim.cmd(M.anim.com) end
   ui.clean()
 end
 

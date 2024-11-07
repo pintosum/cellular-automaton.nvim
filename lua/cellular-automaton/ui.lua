@@ -70,7 +70,6 @@ M.clean = function()
   end
   window_id = nil
   buffers = nil
-  vim.cmd("doau User killreverb")
 end
 
 return M
