@@ -74,8 +74,8 @@ end
 
 M.clean = function()
   animation_in_progress = false
-  if(M.anim.clean ~= nil) then M.anim.clean() end
   ui.clean()
+  if(M.anim.clean ~= nil) then M.anim.clean() end
 end
 
 return M
