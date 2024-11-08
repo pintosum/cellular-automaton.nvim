@@ -25,7 +25,7 @@ local function process_frame(grid, animation_config, win_id)
   end
 end
 
-local function setup_cleaning(win_id, buffers, config)
+local function setup_cleaning(win_id, buffers)
   local exit_keys = { "q", "Q", "<ESC>", "<CR>" }
   for _, key in ipairs(exit_keys) do
     for _, buffer_id in ipairs(buffers) do
@@ -74,7 +74,7 @@ end
 
 M.clean = function()
   animation_in_progress = false
-  if(M.anim.com ~= nil) then vim.cmd(M.anim.com) end
+  if(M.anim.clean ~= nil) then M.anim.clean() end
   ui.clean()
 end
 
