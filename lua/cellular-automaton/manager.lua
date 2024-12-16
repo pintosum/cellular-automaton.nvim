@@ -51,6 +51,7 @@ local function _execute_animation(animation_config)
   if animation_in_progress then
     error("Nested animations are forbidden")
   end
+  M.anim = animation_config
   animation_in_progress = true
   local host_win_id = vim.api.nvim_get_current_win()
   local host_bufnr = vim.api.nvim_get_current_buf()
@@ -74,6 +75,7 @@ end
 M.clean = function()
   animation_in_progress = false
   ui.clean()
+  if(M.anim.clean ~= nil) then M.anim.clean() end
 end
 
 return M
