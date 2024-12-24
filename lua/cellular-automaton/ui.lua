@@ -15,7 +15,8 @@ local get_buffer = (function()
   end
 end)()
 
-M.open_window = function(host_window)
+M.open_window = function(host_window, opts)
+  local style = opts or {}
   buffers = {
     vim.api.nvim_create_buf(false, true),
     vim.api.nvim_create_buf(false, true),
@@ -31,6 +32,11 @@ M.open_window = function(host_window)
   })
   vim.api.nvim_win_set_option(window_id, "winhl", "Normal:CellularAutomatonNormal")
   vim.api.nvim_win_set_option(window_id, "list", false)
+
+  for option, value in pairs(style) do
+    vim.api.nvim_win_set_option(window_id, option, value)
+  end
+
   return window_id, buffers
 end
 
