@@ -18,8 +18,8 @@ end)()
 M.open_window = function(host_window, opts)
   local style = opts or {}
   buffers = {
-    vim.api.nvim_create_buf(false, true),
-    vim.api.nvim_create_buf(false, true),
+    vim.api.nvim_create_buf(true, true),
+    vim.api.nvim_create_buf(true, true),
   }
   vim.bo[buffers[1]].swapfile = false;
   vim.bo[buffers[2]].swapfile = false;
