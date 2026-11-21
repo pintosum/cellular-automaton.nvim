@@ -20,6 +20,10 @@ M.open_window = function(host_window)
     vim.api.nvim_create_buf(false, true),
     vim.api.nvim_create_buf(false, true),
   }
+  vim.bo[buffers[1]].swapfile = false;
+  vim.bo[buffers[2]].swapfile = false;
+  vim.bo[buffers[1]].buftype = 'nowrite';
+  vim.bo[buffers[2]].buftype = 'nowrite';
   local buffnr = get_buffer()
   window_id = vim.api.nvim_open_win(buffnr, true, {
     relative = "editor",
